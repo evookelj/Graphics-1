@@ -27,11 +27,12 @@ fn main() {
         Ok(_) => (),
     }
 
-    for _ in 0..500 {
+    for i in 0..500 {
     	for j in 0..500 {
-    		let r = (j % 500)/2;
-    		let g = (j % 500)/2;
-    		let b = (j % 500)/2;
+            //let r = j%255;
+            let g = (((i*i+j*j)/4)*(255/4))%255;
+            let r = (g*2)%255;
+            let b = (r*2)%255;
     		match file.write_all(format!("{} {} {}\n",r,g,b).as_bytes()) {
     			Err(why) => {
     				panic!("Error writing pixels to {} because {}", display,
