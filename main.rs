@@ -24,20 +24,20 @@ fn main() {
             panic!("Error writing to {} because {}", display,
                                                why.description())
         },
-        Ok(_) => println!("No error writing to {}", display),
+        Ok(_) => (),
     }
 
-    for i in 0..500 {
+    for _ in 0..500 {
     	for j in 0..500 {
-    		let r = j % 255;
-    		let g = j % 255;
-    		let b = j % 255;
+    		let r = (j % 500)/2;
+    		let g = (j % 500)/2;
+    		let b = (j % 500)/2;
     		match file.write_all(format!("{} {} {}\n",r,g,b).as_bytes()) {
     			Err(why) => {
     				panic!("Error writing pixels to {} because {}", display,
     					why.description())
     			},
-    			Ok(_) => println!("No error writing pixels"),
+    			Ok(_) => (),
     		}
     	}
     }
